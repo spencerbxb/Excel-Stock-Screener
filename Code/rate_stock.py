@@ -1,3 +1,6 @@
+# This file contains the formulas determing how stocks are counted using the PE, PEG, RSI, and provided
+# moving averages. Feel free to adjust formulas as seen fit.
+
 import math
 
 # rate(price, ema_1, ema_2, pe, peg, rsi) calculates a symbol's rating using ema_1, ema_2, pe, peg, & rsi

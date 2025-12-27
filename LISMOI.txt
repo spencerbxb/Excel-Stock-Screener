@@ -9,6 +9,9 @@ https://www.python.org/downloads/release/python-3130/?featured_on=pythonbytes
 
 Python 3.13 peut aussi se charger depuis le Microsoft Store pour les devices Windows 10 & 11
 
+AVANT LA PREMIÈRE EXÉCUTION: 
+Veuillez exécuter « installer.py » pour charger tous les dépendences necessaires
+
 Directions:
 
 1. Ouvrez le fichier Excel « Stock Screener » dans le meme répertoire (Stock-Screener)

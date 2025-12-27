@@ -9,6 +9,9 @@ https://www.python.org/downloads/release/python-3130/?featured_on=pythonbytes
 
 It may also be downloaded via the Microsoft Store for Windows 10 & 11 devices.
 
+FOR THE FIRST EXECUTION:
+Please run "installer.py" to download the necessary dependencies
+
 Directions:
 
 1. Open the Excel file "Stock Screener" within the same directory (Stock-Screener)
