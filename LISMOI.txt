@@ -1,0 +1,31 @@
+Outil de suivi d'actions pour Excel (for directions in English, please see README.txt)
+
+Spencer Neumayer, 2025 (https://github.com/spencerbxb)
+
+Ce projet exige l'application Python 3.13 pour s'exécuter. Si Python 3.13 n'est pas téléchargé sur ce
+système d'exploitation, veuillez le télécharger via le lien ci-dessous:
+
+https://www.python.org/downloads/release/python-3130/?featured_on=pythonbytes
+
+Python 3.13 peut aussi se charger depuis le Microsoft Store pour les devices Windows 10 & 11
+
+Directions:
+
+1. Ouvrez le fichier Excel « Stock Screener » dans le meme répertoire (Stock-Screener)
+2. En-dessous de « Symbol », écrivez les symboles que vous voudriez suivre depuis finance.yahoo.com
+3. Faites une clique droite sur « RUN.py ». Dans le menu, sélectionnez « Ouvrez avec »,
+    et apres « Python 3.13 »
+4. Le programme va s'exécuter & évaluer tous les symboles un-par-un & charger les données au fichier
+    Excel
+
+Pour voir une demonstration de la fonctionnalité du programme, changez le paramètre « FILE_NAME » dans « settings.py » à « Canadian Stocks »
+
+À NOTER: 
+- Toutes actions doivent être cotées sur Yahoo Finance pour voir les données (finance.yahoo.com)
+- Les sécurités au TSX finissent TOUJOURS par la suffixe .TO (TD.TO, RY.TO, SHOP.TO), voyez la cotation
+    sur Yahoo Finance pour rassurer
+- Les paires de devises doivent être formatées sous la forme symbole1-symbole2
+    (ex. CAD-USD, CHF-CAD, BTC-USD)
+
+Les paramètres peuvent être changés dans le fichier « settings.py ». Redéfinissez simplement les variables
+avec les valeurs désirées.
