@@ -71,6 +71,12 @@ def assign_ema(constants):
         # Both moving averages are equal, discard the second
         return constants["EMA_1"], NotImplemented
 
+# safe_round(value, ndigits) returns the input variable rounded, if the input variable has no value,
+# then nothing is returned
+# O(1)
+def safe_round(value, ndigits):
+    return round(value, ndigits) if value is not None else None
+
 # main_loop(requested_file) takes the Excel file & computes the data for the file. 
 # O(n)
 def main_loop(requested_file):
@@ -124,15 +130,15 @@ def main_loop(requested_file):
                 idx,
                 name,
                 symbol,
-                round(price, 2),
+                safe_round(price, 2),
                 rating,
                 dividend,
-                round(pe, 2),
-                round(ema1, 2),
-                round(ema2, 2),
-                round(rsi, 1),
-                round(low52, 2),
-                round(high52, 2),
+                safe_round(pe, 2),
+                safe_round(ema1, 2),
+                safe_round(ema2, 2),
+                safe_round(rsi, 1),
+                safe_round(low52, 2),
+                safe_round(high52, 2),
                 peg
             ])
 
@@ -155,4 +161,4 @@ def main_loop(requested_file):
             "PEG",
         ]
 
-        create_output.output(rows, columns)
+    create_output.output(rows, columns)

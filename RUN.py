@@ -11,6 +11,7 @@ if not FILE_NAME.lower().endswith(".xlsx"):
 requested_file = DIRECTORY / FILE_NAME
 
 if requested_file.exists():
+    print(f"evaluating file {requested_file}, please wait")
     evaluator.main_loop(requested_file)
 else:
     print(f'File not found: {requested_file},\n'
