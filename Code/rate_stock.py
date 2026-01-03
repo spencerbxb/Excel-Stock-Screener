@@ -1,12 +1,11 @@
-# This file contains the formulas determing how stocks are counted using the PE, PEG, RSI, and provided
-# moving averages. Feel free to adjust formulas as seen fit.
+# rate_stock.py - rates a stock based on technical and fundamental indicators
 
 import math
 
-# rate(price, ema_1, ema_2, pe, peg, rsi) calculates a symbol's rating using ema_1, ema_2, pe, peg, & rsi
+# rate(price, ema_1, ema_2, pe, rsi) calculates a symbol's rating using ema_1, ema_2, pe, & rsi
 # (if available) returning a string "BUY", "HOLD", or "SELL" depending on the calculated rating.
 # O(1)
-def rate(price, ema_1, ema_2, pe, peg, rsi):
+def rate(price, ema_1, ema_2, pe, rsi):
     def is_valid(x):
         return x is not None and not (isinstance(x, float) and math.isnan(x))
     
@@ -25,13 +24,6 @@ def rate(price, ema_1, ema_2, pe, peg, rsi):
         if pe < 20:
             score += 1
         elif pe > 30:
-            score -= 1
-
-    # PEG ratio
-    if is_valid(peg):
-        if peg < 1:
-            score += 1
-        elif peg > 2:
             score -= 1
 
     # Momentum

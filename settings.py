@@ -9,4 +9,9 @@ PRICE_USED = "Close"    # Which price will be used of "HIGH", "LOW", "OPEN", "CL
 FILE_NAME = "Stock Screener"    # "The Excel spreadsheet to be screened (Default: "Stock Screener", Demo: "Canadian Stocks")
 OPEN_ON_COMPLETION = True
 
+# Style
+TOP_COLOR = "FFFFF2CC"
+ROW_1_COLOR = "FFF9F9F9"
+ROW_2_COLOR = "FFFFFFFF"
+
 # The stock rater formula can be viewed & modified within Stock-Screener>Code>rate_file.py

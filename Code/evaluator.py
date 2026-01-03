@@ -1,11 +1,13 @@
+# evaluator.py - evaluates stocks based on technical indicators and fundamental data
+
 import datetime as dt
 import pandas as pd
 import yfinance as yf
-import numpy as np
 
 import settings
 from Code import rate_stock
 from Code import create_output
+from Code import computations
 
 # ---- TIME CONFIG ----
 START = dt.datetime(2017, 12, 1)
@@ -29,31 +31,6 @@ def get_constants():
         constants[key] = value
 
     return constants
-
-# compute_rsi(series, period) computes the RSI using data from Yahoo Finance
-# O(n)
-def compute_rsi(series, period):
-    delta = series.diff()
-
-    gain = delta.clip(lower=0)
-    loss = -delta.clip(upper=0)
-
-    avg_gain = gain.ewm(alpha=1/period, min_periods=period).mean()
-    avg_loss = loss.ewm(alpha=1/period, min_periods=period).mean()
-
-    rs = avg_gain / avg_loss
-    return 100 - (100 / (1 + rs))
-
-# to_scalar(x) gets the scalar value of data
-# O(1)
-def to_scalar(x):
-    if x is None:
-        return None
-    if isinstance(x, (pd.Series, pd.DataFrame, np.ndarray)):
-        if len(x) == 0:
-            return None
-        return float(x.iloc[-1] if hasattr(x, "iloc") else x[-1])
-    return float(x) if pd.notna(x) else None
 
 # assign_ema(constants) ensure the first moving average is shorter than the second, deletes the second ema
 # if they are equal.
@@ -108,7 +85,7 @@ def main_loop(requested_file):
             price = df[PRICE_USED].iloc[-1, 0]                          # price data
             df[f"EMA{EMA_1}"] = df[PRICE_USED].ewm(span=EMA_1).mean()   # EMA_1 data
             df[f"EMA{EMA_2}"] = df[PRICE_USED].ewm(span=EMA_2).mean()   # EMA_2
-            df["RSI"] = compute_rsi(df[PRICE_USED], RSI_DAYS)           # RSI data
+            df["RSI"] = computations.compute_rsi(df[PRICE_USED], RSI_DAYS)           # RSI data
 
             ema1 = df[f"EMA{EMA_1}"].iloc[-1]
             ema2 = df[f"EMA{EMA_2}"].iloc[-1]
@@ -120,11 +97,10 @@ def main_loop(requested_file):
             info = yf.Ticker(symbol).info
 
             name = info.get("longName")
-            dividend = to_scalar(info.get("dividendYield"))
-            pe = to_scalar(info.get("trailingPE"))
-            peg = to_scalar(info.get("pegRatio"))
+            dividend = computations.to_scalar(info.get("dividendYield"))
+            pe = computations.to_scalar(info.get("trailingPE"))
 
-            rating = rate_stock.rate(price, ema1, ema2, pe, peg, rsi)
+            rating = rate_stock.rate(price, ema1, ema2, pe, rsi)
 
             rows.append([
                 idx,
@@ -138,8 +114,7 @@ def main_loop(requested_file):
                 safe_round(ema2, 2),
                 safe_round(rsi, 1),
                 safe_round(low52, 2),
-                safe_round(high52, 2),
-                peg
+                safe_round(high52, 2)
             ])
 
         except Exception as e:
@@ -157,8 +132,7 @@ def main_loop(requested_file):
             f"EMA {EMA_2}",
             f"RSI ({RSI_DAYS})",
             "52W Low",
-            "52W High",
-            "PEG",
+            "52W High"
         ]
 
     create_output.output(rows, columns)

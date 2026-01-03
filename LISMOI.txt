@@ -7,7 +7,7 @@ système d'exploitation, veuillez le télécharger via le lien ci-dessous:
 
 https://www.python.org/downloads/release/python-3130/?featured_on=pythonbytes
 
-Python 3.13 peut aussi se charger depuis le Microsoft Store pour les devices Windows 10 & 11
+Python 3.13 peut aussi se charger depuis le Microsoft Store pour les appareils Windows 10 & 11
 
 AVANT LA PREMIÈRE EXÉCUTION: 
 Veuillez exécuter « installer.py » pour charger tous les dépendences necessaires
