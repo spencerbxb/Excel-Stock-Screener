@@ -1,4 +1,4 @@
-# This function installs of the necessary files related to the Stock-Screener. It only needs to be run once
+# This function installs all of the necessary files related to the Stock-Screener. It only needs to be run once
 # & does not need to executed ever again.
 
 import subprocess

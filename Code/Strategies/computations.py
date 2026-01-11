@@ -2,6 +2,12 @@
 
 import pandas as pd
 import numpy as np
+import math
+
+# is_valid(x) determines if a number is valid for usage or not
+# O(1)
+def is_valid(x):
+        return x is not None and not (isinstance(x, float) and math.isnan(x))
 
 # to_scalar(x) gets the scalar value of data
 # O(1)

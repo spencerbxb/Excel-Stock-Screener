@@ -2,13 +2,24 @@
 
 from pathlib import Path
 import pandas as pd
+
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
+from openpyxl.styles import Font
+
 import os
 import sys
 import subprocess
 
 import settings
+
+colors = {
+    "Strong Buy": settings.STRONG_BUY,
+    "Buy": settings.BUY,
+    "Hold": settings.HOLD,
+    "Sell": settings.SELL,
+    "Strong Sell": settings.STRONG_SELL
+}
 
 # output(rows, columns) creates the output Excel file within the Stock-Screener directory.
 # O(n)
@@ -31,12 +42,15 @@ def output(rows, columns):
     for cell in ws[1]:
         cell.fill = header_fill
 
-    # Alterante colors for following rows
-    for i, row in enumerate(ws.iter_rows(min_row=2, max_row=ws.max_row)):
-        fill_color = ROW_COLORS[i % 2]
-        fill = PatternFill(start_color=fill_color, end_color=fill_color, fill_type="solid")
-        for cell in row:
+    # Color the rating column (index 4) based on value
+    rating_col_index = 4
+    for row in ws.iter_rows(min_row=2, max_row=ws.max_row):
+        cell = row[rating_col_index]
+        rating = str(cell.value)
+        if rating in colors:
+            fill = PatternFill(start_color=colors[rating], end_color=colors[rating], fill_type="solid")
             cell.fill = fill
+            cell.font = Font(color="FFFFFF")    # White text
 
     wb.save(OUTPUT_FILE)
     # Done coloring
