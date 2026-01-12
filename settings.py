@@ -1,7 +1,7 @@
 # Feel free to modify the variables within this file to customize
 
 # Trading strategy:
-STRATEGY = "Momentum"      # Which strategy should be used ("Mixed", "Momentum", "Value", "Growth")
+STRATEGY = "Mixed"      # Which strategy should be used ("Mixed", "Momentum", "Value", "Growth")
 
 # Momentum Constants:
 RSI_DAYS = 14           # Relative Strength Index: determines if a stock is over/undersold (recommended: 14)
@@ -35,6 +35,7 @@ TOP_COLOR = "FFFFF2CC"
 ROW_1_COLOR = "FFF9F9F9"
 ROW_2_COLOR = "FFFFFFFF"
 
+# Colors for ratings
 STRONG_BUY   = "FF086218"
 BUY          = "FF048910"
 HOLD         = "FFEC9C01"
