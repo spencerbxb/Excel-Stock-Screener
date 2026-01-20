@@ -10,25 +10,26 @@ https://www.python.org/downloads/release/python-3130/?featured_on=pythonbytes
 Python 3.13 peut aussi se charger depuis le Microsoft Store pour les appareils Windows 10 & 11
 
 AVANT LA PREMIÈRE EXÉCUTION: 
-Veuillez exécuter « installer.py » pour charger tous les dépendences necessaires
+Veuillez exécuter « installer.py » pour charger toutes les dépendences necessaires
 
 Directions:
 
 1. Ouvrez le fichier Excel « Stock Screener » dans le meme répertoire (Stock-Screener)
 2. En-dessous de « Symbol », écrivez les symboles que vous voudriez suivre depuis finance.yahoo.com
-3. Faites une clique droite sur « RUN.py ». Dans le menu, sélectionnez « Ouvrez avec »,
-    et apres « Python 3.13 »
-4. Le programme va s'exécuter & évaluer tous les symboles un-par-un & charger les données au fichier
-    Excel
+3. Faites un clic droie sur « RUN.py ». Dans le menu, sélectionnez « Ouvrez avec »,
+    et dans la fenêtre contextuelle « Python 3.13 »
+4. Le programme va ensuite s'exécuter & évaluer tous les symboles un-par-un & charger les données au
+    fichier Excel
 
-Pour voir une demonstration de la fonctionnalité du programme, changez le paramètre « FILE_NAME » dans « settings.py » à « Canadian Stocks »
+Pour voir une demonstration de la fonctionnalité du programme, changez le paramètre « FILE_NAME »
+    dans « settings.py » à « Canadian Stocks »
 
 À NOTER: 
 - Toutes actions doivent être cotées sur Yahoo Finance pour voir les données (finance.yahoo.com)
 - Les sécurités au TSX finissent TOUJOURS par la suffixe .TO (TD.TO, RY.TO, SHOP.TO), voyez la cotation
     sur Yahoo Finance pour rassurer
 - Les paires de devises doivent être formatées sous la forme symbole1-symbole2
-    (ex. CAD-USD, CHF-CAD, BTC-USD)
+    (eg. CAD-USD, CHF-CAD, BTC-USD)
 
-Les paramètres peuvent être changés dans le fichier « settings.py ». Redéfinissez simplement les variables
-avec les valeurs désirées.
+Les paramètres peuvent être changés dans le fichier « settings.py ». Redéfinissez simplement les
+    variables avec les valeurs désirées.

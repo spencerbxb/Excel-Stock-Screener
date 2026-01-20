@@ -9,7 +9,7 @@ EMA_1 = 50              # Exponential Moving Average 1 (recommended: 50)
 EMA_2 = 200             # Exponential Moving Average 2 (recommended: 200)
 BENCHMARK = "VOO"       # Which symbol should be used as the benchmark
                         # (recommended: "VOO" (S&P500) or "QQQ" (NASDAQ) for USD-listed assets, 
-                        # "VFV.TO" (CAD-Hedged S&P500) or "XIU.TO" (Toronto Stock Exchange) for CAD-listed assets)
+                        # "VFV.TO" (CAD-Hedged S&P500) or "XIU.TO" (Toronto Stock Exchange) for CAD-listed assets
 
 # Value Constants:
 TARGET_PE = 20          # Target Price to Earnings ratio (recommended: 20)
