@@ -20,7 +20,7 @@ TTM = 10                # Trailing Twelve Month earnings growth (recommended: )
 YOY_EPS = 10            # Earnings Per Share growth Year over Year (recommended: )
 GROW_DIV_YIELD = 0.01   # Dividend Yield %: should be less than this value (recommended: 0.01 (1%))
 
-# Weight Constants:
+# Weight Constants (for "Mixed" strategy):
 MOM_WEIGHT = 1          # Weight assigned to momentum-based metrics
 VAL_WEIGHT = 1          # Weight assigned to valuation-based metrics
 GRO_WEIGHT = 1          # Weight assigned to growth-based metrics
