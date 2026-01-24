@@ -20,36 +20,9 @@ DEFAULT_CONSTANTS = {
     "PRICE_USED": "Close",
 }
 
-# get_constants() pulls constants from settings, updating their values within the script
-# O(n)
-def get_constants():
-    constants = DEFAULT_CONSTANTS.copy()
-
-    for key, default in DEFAULT_CONSTANTS.items():
-        value = getattr(settings, key, default)
-        constants[key] = value
-
-    return constants
-
-# assign_ema(constants) ensures the first moving average is shorter than the second, deletes the second ema
-# if they are equal.
-# O(1)
-def assign_ema(constants):
-    if (constants["EMA_1"] < constants["EMA_2"]):
-        # Moving average 1 is shorter than 2
-        return constants["EMA_1"], constants["EMA_2"]
-    
-    elif (constants["EMA_1"] > constants["EMA_2"]):
-        # Moving average 2 is shorter than moving average 1
-        return constants["EMA_2"], constants["EMA_1"]
-    
-    else:
-        # Both moving averages are equal, discard the second
-        return constants["EMA_1"], NotImplemented
-
 # main_loop(requested_file) takes the Excel file & computes the data for the file. 
 # O(n)
-def main_loop(requested_file):
+def main_loop(requested_file, used_strategy):
     constants = get_constants()
 
     # Pull data:
@@ -72,7 +45,7 @@ def main_loop(requested_file):
         print('- "Low"\n')
         return
 
-    # Pull S&P500 performance to use as a benchmark (in USD)
+    # Pull data to use as a benchmark for comparisons (by default VOO)
     Benchmark = yf.download(settings.BENCHMARK, start=START, end=NOW, progress=False)
 
     if Benchmark.empty:
@@ -83,7 +56,7 @@ def main_loop(requested_file):
     for idx, symbol in enumerate(symbols, start=1):
         try:
             element = symbol_processor.process_symbol(
-                symbol, idx, START, NOW, PRICE_USED, EMA_1, EMA_2, RSI_DAYS, Benchmark
+                symbol, idx, START, NOW, PRICE_USED, EMA_1, EMA_2, RSI_DAYS, Benchmark, used_strategy
             )
 
             if element is None:
@@ -96,7 +69,7 @@ def main_loop(requested_file):
 
     columns = []
 
-    match settings.STRATEGY:
+    match used_strategy:
         case "Momentum":
             columns = [
                 "#", "Name", "Symbol", PRICE_USED, "Rating",
@@ -124,5 +97,34 @@ def main_loop(requested_file):
                 "TTM", "EPS Growth",
                 "52W Low", "52W High"
             ]
+        case _:
+            print("Function failed")
 
     create_output.output(rows, columns)
+
+# get_constants() pulls constants from settings, updating their values within the script
+# O(n)
+def get_constants():
+    constants = DEFAULT_CONSTANTS.copy()
+
+    for key, default in DEFAULT_CONSTANTS.items():
+        value = getattr(settings, key, default)
+        constants[key] = value
+
+    return constants
+
+# assign_ema(constants) ensures the first moving average is shorter than the second, deletes the second ema
+# if they are equal.
+# O(1)
+def assign_ema(constants):
+    if (constants["EMA_1"] < constants["EMA_2"]):
+        # Moving average 1 is shorter than 2
+        return constants["EMA_1"], constants["EMA_2"]
+    
+    elif (constants["EMA_1"] > constants["EMA_2"]):
+        # Moving average 2 is shorter than moving average 1
+        return constants["EMA_2"], constants["EMA_1"]
+    
+    else:
+        # Both moving averages are equal, discard the second
+        return constants["EMA_1"], NotImplemented

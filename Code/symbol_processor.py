@@ -12,7 +12,7 @@ from Code.Strategies import growth
 # symbol in regards to the selected strategy, returning numerous values in regards to the symbol as well as a
 # rating in respect to those values.
 # O(1)
-def process_symbol(symbol, idx, START, NOW, PRICE_USED, EMA_1, EMA_2, RSI_DAYS, Benchmark):
+def process_symbol(symbol, idx, START, NOW, PRICE_USED, EMA_1, EMA_2, RSI_DAYS, Benchmark, used_strategy):
     print(f"Processing {symbol}...")
 
     df = yf.download(symbol, start=START, end=NOW, progress=False)
@@ -40,11 +40,11 @@ def process_symbol(symbol, idx, START, NOW, PRICE_USED, EMA_1, EMA_2, RSI_DAYS, 
         high52 = high52.iloc[0]
 
     div_yield = None
-    if settings.STRATEGY != "Momentum":
+    if used_strategy != "Momentum":
         # Only pull dividend yield if strategy is non-momentum
         div_yield = computations.to_scalar(info.get("dividendYield"))
 
-    match settings.STRATEGY:
+    match used_strategy:
         case "Momentum":
             rating, ema_s, ema_l, rsi, rel_perf = momentum.calculate(
                 price_series, EMA_1, EMA_2, RSI_DAYS, Benchmark

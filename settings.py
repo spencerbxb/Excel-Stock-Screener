@@ -1,7 +1,7 @@
 # Feel free to modify the variables within this file to customize
 
 # Trading strategy:
-STRATEGY = "Mixed"      # Which strategy should be used ("Mixed", "Momentum", "Value", "Growth")
+STRATEGY = "Ask First"  # Which strategy should be used ("Ask First", "Mixed", "Momentum", "Value", "Growth")
 
 # Momentum Constants:
 RSI_DAYS = 14           # Relative Strength Index: determines if a stock is over/undersold (recommended: 14)
