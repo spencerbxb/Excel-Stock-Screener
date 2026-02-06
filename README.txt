@@ -1,4 +1,4 @@
-Stock Tracker Tool for Excel (pour les directions en français, veuillez voir « LISMOI.txt »)
+Stock Tracker Tool for Excel (pour les directions en français, veuillez consulter « LISMOI.txt »)
 
 Spencer Neumayer, 2025 (https://github.com/spencerbxb)
 
