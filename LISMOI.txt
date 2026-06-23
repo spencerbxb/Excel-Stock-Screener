@@ -16,9 +16,9 @@ Directions:
 
 1. Ouvrez le fichier Excel « Stock Screener » dans le meme répertoire (Stock-Screener)
 2. En-dessous de « Symbol », écrivez les symboles que vous voudriez suivre depuis finance.yahoo.com
-3. Faites un clic droie sur « RUN.py ». Dans le menu, sélectionnez « Ouvrez avec »,
+3. Faites un clic droite sur « RUN.py ». Dans le menu, sélectionnez « Ouvrez avec »,
     et dans la fenêtre contextuelle « Python 3.13 »
-4. Le programme va ensuite s'exécuter & évaluer tous les symboles un-par-un & charger les données au
+4. Le programme va ensuite s'exécuter, évaluant tous les symboles un-par-un, chargeant les données au
     fichier Excel
 
 Pour voir une demonstration de la fonctionnalité du programme, changez le paramètre « FILE_NAME »
